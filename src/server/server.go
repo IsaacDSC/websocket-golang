@@ -4,7 +4,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"websocket/src/websocket/events/chat"
+	"websocket/src/routes"
+	"websocket/src/websocket/chat"
 )
 
 func Server(port int) {
@@ -13,11 +14,7 @@ func Server(port int) {
 	go server.Serve()
 	defer server.Close()
 
-	http.Handle("/socket.io/", server)
-	http.Handle("/", http.FileServer(http.Dir("./public")))
-	http.Handle("/healtcheck", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Write([]byte("OK"))
-	}))
+	routes.SettingsRoutes(server)
 
 	fmt.Println("Serving at localhost:" + fmt.Sprintf("%d", port))
 	log.Fatal(http.ListenAndServe(":8000", nil))

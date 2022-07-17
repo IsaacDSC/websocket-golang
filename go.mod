@@ -12,4 +12,5 @@ require (
 	github.com/googollee/go-socket.io v1.6.2 // indirect
 	github.com/gorilla/websocket v1.5.0 // indirect
 	github.com/mitchellh/mapstructure v1.5.0 // indirect
+	github.com/rs/cors v1.8.2
 )
